@@ -1,6 +1,5 @@
 ##### honycyh-blog
 
-[![author](https://img.shields.io/badge/author-genaller-blue.svg)](https://github.com/genaller)
 
 该博客于2020年3月开始搭建的，当初搭建只是单纯为了学习设计模式，编写的代码并没有规范，经过两个月的学习，掌握了很多知识，所以打算将它运用在这里，初学者可以下载下来搭建学习使用
 
