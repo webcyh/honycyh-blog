@@ -1,0 +1,64 @@
+---------------------------------------------------------------
+[20200227-19:32:08] 127.0.0.1 about blog.cn/index.php/Index/about
+0.056736s
+17.63req/s
+-1,545,237.60kb
+11
+cli
+select * from table limit 1
+---------------------------------------------------------------
+[20200227-19:44:26] 127.0.0.1 about blog.cn/index.php/Index/about
+0.096476s
+10.37req/s
+-1,545,238.42kb
+11
+cli
+select * from table limit 1
+---------------------------------------------------------------
+[20200227-22:15:42] 127.0.0.1 about blog.cn/index.php/Index/about
+0.090797s
+11.01req/s
+-1,545,247.29kb
+11
+cli
+select * from table limit 1
+---------------------------------------------------------------
+[20200227-22:16:10] 127.0.0.1 about blog.cn/index.php/Index/about
+0.067577s
+14.80req/s
+-1,545,247.21kb
+11
+cli
+select * from table limit 1
+---------------------------------------------------------------
+[20200305-16:21:53] 127.0.0.1 about blog.cn/index.php/Index/about
+0.069595s
+14.37req/s
+-1,545,816.88kb
+11
+cli
+select * from table limit 1
+---------------------------------------------------------------
+[20200305-16:21:55] 127.0.0.1 about blog.cn/index.php/Index/about
+0.090571s
+11.04req/s
+-1,545,816.97kb
+11
+cli
+select * from table limit 1
+---------------------------------------------------------------
+[20200305-16:22:28] 127.0.0.1 about blog.cn/index.php/Index/about
+0.058284s
+17.16req/s
+-1,545,816.86kb
+11
+cli
+select * from table limit 1
+---------------------------------------------------------------
+[20200305-16:23:59] 127.0.0.1 about blog.cn/index.php/Index/about
+0.051950s
+19.25req/s
+-1,545,816.95kb
+11
+cli
+select * from table limit 1
