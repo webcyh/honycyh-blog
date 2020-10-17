@@ -1,26 +1,41 @@
 <?php
 
-/**
- * @Author: webcyh
- * @Date:   2020-02-27 15:26:58
- * @Last Modified by:   webcyh
- * @Last Modified time: 2020-03-09 10:03:34
- */
+namespace App; // 前面插入空行
 
-namespace App;
+use \Core\Controller; // 前面插入空行
+use \Core\Test as Fuck; // 前面插入空行
 
-use \Core\Controller;
 
-class Api extends Controller
-{
+// class Api extends Controller implements \ArrayAccess, \Countable
+
+//或者
+// class Api extends Controller implements 
+//     \ArrayAccess, 
+//     \Countable
+class Api extends Controller 
+{ // 花括号自成一行
+
+    // 常量为大写
+    const VERSION = '1.0';
+    const DATE_APPROVED = '2020-06-01';
+    const isGo = true;// 关键字为小写
+
+    // 属性可以是 大驼峰小驼峰下划线分割线 必须添加访问修饰符 abstract final必须在访问修饰符前面 static在访问之后
+    final private static fuck = 1;
+
+    // 属性前面必须加修饰符 不可以用var声明
     protected $view = BASE . DS . 'tpl';
 
     public function __construct($tpl)
-    {
+    {  // 花括号自成一行
+
+        // 保存视图
         $this->tpl = $tpl;
+        // 检查是否登录了
         $this->checkLogin($tpl);
     }
 
+    // 小驼峰 必须添加修饰符
     public function loginCheck()
     {
         $email = post('email');
@@ -35,9 +50,12 @@ class Api extends Controller
     public function adminlist()
     {
         $data = L('admin')->list();
+
+        // 控制结构关键字前后空格  并且花括号同行
         if (empty($data)) {
             return ['code' => 1];
         }
+
         return [
             'code' => 0,
             'data' => $data
@@ -85,52 +103,31 @@ class Api extends Controller
         return $response;
     }
 
+    // 添加角色
     public function addrole()
     {
         return L('role')->addrole();
     }
 
-    public function userList()
-    {
-        return [
-            'userlist' => [
-                [
-                    "src" => "https://dss2.bdstatic.com/6Ot1bjeh1BF3odCf/it/u=1798368125,2239530857&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=a79cdb0523a694c4a61a26a37c8597fa",
-                    "title" => "订阅号",
-                    "num" => 3,
-                    "content" => "算法分析fuck you"
-                ],
-                [
-                    "src" => "https://dss2.bdstatic.com/6Ot1bjeh1BF3odCf/it/u=1798368125,2239530857&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=a79cdb0523a694c4a61a26a37c8597fa",
-                    "title" => "订阅号",
-                    "num" => 3,
-                    "content" => "算法分析fuck you"
-                ],
-            ],
-            'userInfo' => [
-                'logo' => 'https://dss2.bdstatic.com/6Ot1bjeh1BF3odCf/it/u=1798368125,2239530857&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=a79cdb0523a694c4a61a26a37c8597fa',
-                'id' => '微信号：CYH11231233',
-                'username' => 'ToBeMiracle'
-            ]
-        ];
-
-
-    }
 
     //上传图片
     public function uploadImage()
     {
+        // 获取上传实例对象
         $upload = new \lib\tools\Upload();
+
+        // 上传文件
         if ($upload->uploadFile("imageFile")) {
-            /**
-             * 上传成功后存储到数据库当中
-             */
+
+            // 返回成功信息
             return [
                 'success' => true,
                 'message' => '/upload/' . $upload->newName,
                 'filename' => '/upload/' . $upload->newName
             ];
         } else {
+
+            // 失败了
             return [
                 'success' => false,
                 'message' => "错误",
@@ -139,45 +136,45 @@ class Api extends Controller
         }
     }
 
-    //评论操作
-
+    //测试  参数后边有空格 太长时候
+    public function test(
+        $arg1, 
+        $arg2, 
+        $arg3 = [], 
+        $arg3 = []
+    ) {
+        // 调用时候有空格
+        $this->test(
+            1, 
+            2, 
+            3
+        );
+    }
     //评论操作
     public function comment()
     {
-        /**
-         * 获取邮箱地址
-         * 评论的文章id
-         * 昵称
-         * http地址 验证后 插入
-         * 评论成功后插入到该位置
-         */
         $data = post();
+
+        // 序列化
         $data['content'] = htmlspecialchars($data['content']);
         $data['nickname'] = htmlspecialchars($data['nickname']);
         $data['email'] = htmlspecialchars($data['email']);
 
+        // 检查评论 
         if (!V('comment')->check(post())) {
+
+            // 评论失败
             return array_merge(['status' => 0, 'msg' => V('comment')->errorMsg()], $data);
         } else {
+
             if (M('comment')->addComment(post())) {
+
+                // 评论成功
                 return array_merge(['status' => 1, 'msg' => '添加成功'], $data);
             }
+
+            // 系统导致评论失败
             return array_merge(['status' => 0, 'msg' => '评论失败'], $data);
         }
-    }
-
-    //回复操作
-    public function reply()
-    {
-        /**
-         * 获取评论id是否为回复评论还是回复回复
-         * 获取内容
-         * 获取邮箱地址
-         * 被评论者的昵称
-         * 获取回复昵称
-         * 执行完成后直接插入在该位置
-         */
-
-        return array_merge(['status' => 1], post());
     }
 }
